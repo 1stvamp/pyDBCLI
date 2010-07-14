@@ -38,8 +38,8 @@ class LiteUtility(Utility):
 
 # Shell script usage instrunctions, pushed to stdout
 # by usage()
-USAGE_MESSAGE = """
-Usage: mycli.py -f <file>
+USAGE_MESSAGE = """My SQLite CLI replacement
+Usage: litecli.py -f <file>
 
 Options:
     -f, --file : SQLite DB file path
