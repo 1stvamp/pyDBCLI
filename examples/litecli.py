@@ -1,3 +1,12 @@
+#-*- coding: utf-8 -*-
+
+"""Example pyDBCLI.utils.Utility app, simple replacement for sqlite3's
+CLI utility.
+"""
+__author__ = 'Wes Mason <wes[at]1stvamp[dot]org>'
+__docformat__ = 'restructuredtext en'
+__version__ = '0.1'
+
 import sqlite3
 import getopt
 import sys
@@ -76,11 +85,9 @@ def main(argv):
 
         # Setup cursor
         conn = sqlite3.connect(filepath)
-        cursor = conn.cursor()
 
         u = LiteUtility()
-        u.cursor = cursor
-        u.system_cursor = cursor
+        u.cursor = u.system_cursor = conn.cursor()
         u.cmdloop()
 
 if __name__ == "__main__":
