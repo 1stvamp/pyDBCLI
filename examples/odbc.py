@@ -62,7 +62,7 @@ def url_to_dsn(url):
         res = urlparse(url)
         return res.query.replace('&', ';'), {
                 'driver': res.scheme,
-                'server': res.netloc,
+                'server': '%s:%s' % (res.hostname, res.port,),
                 'database': res.path,
                 'uid': res.username,
                 'pwd': res.password,
