@@ -50,24 +50,11 @@ class ODBCUtility(Utility):
 # Shell script usage instrunctions, pushed to stdout
 # by usage()
 USAGE_MESSAGE = """ODBC Query Tool
-Usage: odbc.py -d <dsn url>
+Usage: odbc.py -d <dsn>
 
 Options:
-    -d, --dsn : ODBC DSN, in RFC1738 URL format:
-        driver://username:password@host:port/schema
-        driver://username:password@host:port/schema?extraProperties=here&another=too
+    -d, --dsn : ODBC DSN, see your driver's documentation for more details
 """
-
-def url_to_dsn(url):
-        res = urlparse(url)
-        return res.query.replace('&', ';'), {
-                'driver': res.scheme,
-                'server': '%s:%s' % (res.hostname, res.port,),
-                'database': res.path,
-                'uid': res.username,
-                'pwd': res.password,
-        }
-
 
 def main(argv):
         """Main entry function for CLI script, should be
@@ -90,17 +77,16 @@ def main(argv):
                 sys.exit(0)
 
         dsn = None
-        query = None
 
         # Parse CLI options
         for opt, arg in opts:
                 if opt in ("-d", "--dsn"):
-                        query, dsn = url_to_dsn(arg)
+                        dsn = arg
         if not dsn:
-                error("Please provide a DSN URL", True, USAGE_MESSAGE)
+                error("Please provide a DSN", True, USAGE_MESSAGE)
 
         # Setup cursor
-        conn = pyodbc.connect(query, **dsn)
+        conn = pyodbc.connect(dsn)
 
         u = ODBCUtility()
         u.cursor = u.system_cursor = conn.cursor()
