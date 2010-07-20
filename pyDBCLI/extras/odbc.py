@@ -31,7 +31,7 @@ class ODBCUtility(Utility):
         @memoized()
         def get_columns(self, name):
                 columns = [['Column name', 'Type', 'Size',]]
-                r = self.connect.execute('SELECT * FROM %s LIMIT 1' % (table,))
+                r = self.cursor.execute('SELECT * FROM %s LIMIT 1' % (table,))
                 for row in r.cursor.description:
                         columns.append([row[0], self.db_types[row[1]], row[3],])
                 return columns
