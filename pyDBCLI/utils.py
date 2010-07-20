@@ -103,7 +103,8 @@ class Utility(cmd.Cmd):
                 """\l
 List schemas
 """
-                raise NotImplementedError
+                if not self.current:
+                        print_table(self.get_schemas(), self.vertical_display)
 
         def do_d(self, line):
                 """Method to handle special comand \d,
