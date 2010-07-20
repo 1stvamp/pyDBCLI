@@ -13,5 +13,8 @@ setup(
     author='Wes Mason',
     author_email='wes[at]1stvamp[dot]org',
     url='http://github.com/1stvamp/pyDBCLI',
-    packages=find_packages(exclude=['ez_setup'])
+    packages=find_packages(exclude=['ez_setup']),
+    extras_require={
+        'odbc': ['pyodbc>=2.0',],
+    }
 )
