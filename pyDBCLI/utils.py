@@ -180,7 +180,7 @@ Alias of \G.
                                                         keys = keys()
                                                 data.append(keys)
                                                 first = False
-                                        data.append(row.values())
+                                        data.append([v for v in row])
                                 if len(data) > 1:
                                         print_table(data, self.vertical_display)
                                         print >> sys.stdout, "\n%d found." % (len(data)-1,)
@@ -214,7 +214,7 @@ Clear cache of profiles, templates, tables and table columns.
                 query, via the internal DBAPI cursor.
                 """
                 try:
-                        data = self.cursor.execute(sql)
+                        data = self.cursor.execute(sql).fetchall()
                 except Exception, e:
                         data = tuple()
                         error(e, False)
