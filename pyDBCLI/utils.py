@@ -187,7 +187,8 @@ Alias of \G.
                                 else:
                                         print >> sys.stdout, "\nNo results found."
                                 self.current = ''
-                                self.prompt = self._prompt
+                                if self.prompt == self.mutli_prompt:
+                                        self.prompt = self._prompt
                         else:
                                 self._prompt = self.prompt
                                 self.prompt = self.multi_prompt
