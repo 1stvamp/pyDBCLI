@@ -170,7 +170,11 @@ Alias of \G.
                                                         # If this DBAPI doesn't provide a keys(), then
                                                         # try cursor.description
                                                         keys = []
-                                                        for r in row.cursor.description:
+                                                        if hasattr(row, 'cursor'):
+                                                                description = getattr(row, 'cursor').description
+                                                        else:
+                                                                description = getattr(row, 'cursor_description')
+                                                        for r in description:
                                                                 keys.append(r[0])
                                                 else:
                                                         keys = keys()
