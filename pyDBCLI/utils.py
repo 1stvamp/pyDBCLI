@@ -165,7 +165,7 @@ Alias of \G.
                                 data = []
                                 for row in self.get_query(self.current):
                                         if first:
-                                                keys = row.getattr('keys', None)
+                                                keys = getattr(row, 'keys', None)
                                                 if not keys:
                                                         # If this DBAPI doesn't provide a keys(), then
                                                         # try cursor.description
