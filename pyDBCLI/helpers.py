@@ -76,17 +76,14 @@ class memoized(object):
                 @wraps(fn)
                 def wrapper(*args, **kwargs):
                         cache = args[0].data_cache
+                        key = [fn].extend(args)
                         try:
-                                return cache[args]
+                                return cache[key]
                         except KeyError:
-                                cache[args] = value = fn(*args)
+                                cache[key] = value = fn(*args)
                                 return value
                         except TypeError:
                                 # uncachable -- for instance, passing a list as an argument.
                                 # Better to not cache than to blow up entirely.
                                 return fn(*args)
                 return wrapper
-        def __repr__(self):
-                """Return the function's docstring."""
-                return self.func.__doc__
-
