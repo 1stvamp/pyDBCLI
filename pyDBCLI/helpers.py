@@ -76,7 +76,7 @@ class memoized(object):
                 @wraps(fn)
                 def wrapper(*args, **kwargs):
                         cache = args[0].data_cache
-                        key = [fn].extend(args)
+                        key = str(fn)+str(args)+str(kwargs)
                         try:
                                 return cache[key]
                         except KeyError:
