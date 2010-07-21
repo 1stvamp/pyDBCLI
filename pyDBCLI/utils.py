@@ -171,7 +171,7 @@ Alias of \G.
                                                         # try cursor.description
                                                         keys = []
                                                         for r in row.cursor.description:
-                                                                keys.append([r[0])
+                                                                keys.append(r[0])
                                                 else:
                                                         keys = keys()
                                                 data.append(keys)
