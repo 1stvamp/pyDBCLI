@@ -20,5 +20,4 @@ setup(
     license=open('LICENSE').read(),
     long_description=open('README.rst').readline(),
     keywords='database cli interactive cmd tools framework',
-    platforms=['any',]
 )
