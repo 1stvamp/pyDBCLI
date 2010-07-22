@@ -17,7 +17,5 @@ setup(
     extras_require={
         'odbc': ['pyodbc>=2.0',],
     },
-    license=open('LICENSE').read(),
-    long_description=open('README.rst').readline(),
-    keywords='database cli interactive cmd tools framework',
+    license='Apache License 2.0'
 )
